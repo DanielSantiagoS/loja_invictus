@@ -1,47 +1,45 @@
 [
   {
     "id": "1001",
-    "name": "Fone de Ouvido Bluetooth",
-    "price": 199.9,
-    "stock": 28,
-    "icon": "headphones",
-    "shortDescription": "Som de alta qualidade com conexão estável.",
-    "longDescription": "Fone sem fio com almofadas confortáveis, bateria de longa duração e conexão Bluetooth estável. Ideal para estudar, assistir aulas on-line e ouvir músicas com boa qualidade sonora."
+    "name": "Paracord",
+    "price": 49.99,
+    "stock": 10,
+    "icon": "",
+    "shortDescription": "Corda de alta reistência portável",
+    "longDescription": "Corda altamente resistente e durável, feita para qualquer aventura, calor, frio até de baixo d'água, ela não te deixa na mão "
   },
   {
     "id": "1002",
-    "name": "Smartwatch Fit X",
-    "price": 299.9,
-    "stock": 15,
+    "name": "Smartwatch Titan IV",
+    "price": 699.99,
+    "stock": 8,
     "icon": "watch",
-    "shortDescription": "Monitoramento de saúde e notificações no pulso.",
-    "longDescription": "Relógio inteligente com monitoramento de batimentos, atividades físicas, notificações de aplicativos e bateria de longa duração. Excelente para estudantes acompanharem rotina, estudos e atividades diárias."
+    "shortDescription": "Monitoramento de sinais vitais e localização",
+    "longDescription": "SmartWatch com a caixa de grafeno e aço, feito para o topo de uma montanha até o fundo do mar, SmartWatch com multifunções como: sinais Vitais, GPS, Notificações, tracking de passos e tempo de atividade."
   },
   {
     "id": "1003",
-    "name": "Caixa de Som Inteligente",
-    "price": 149.9,
-    "stock": 32,
-    "icon": "speaker",
-    "shortDescription": "Potência e graves para qualquer ocasião.",
-    "longDescription": "Caixa de som compacta com áudio potente, visual moderno e conexão sem fio. Pode ser usada em apresentações escolares, atividades em grupo e momentos de lazer."
-  },
+    "name": "MultiTool Soul 500",
+    "price": 349.99,
+    "stock": 23,
+    "icon": "",
+    "shortDescription": "MultiTool para qualquer ocasião",
+    "longDescription": "MultiTool para levar em todas suas aventuras, com várias ferramentas inclusas, como: chave estrela, chave de fenda, Lâmina, tesoura, abridor de latas e garrafas, alicate, pinça e serra de corte. "},
   {
     "id": "1004",
-    "name": "Mouse Gamer RGB",
-    "price": 129.9,
+    "name": "Pederneira Rák ",
+    "price": 45.00,
     "stock": 40,
-    "icon": "mouse",
-    "shortDescription": "Alta precisão e iluminação RGB.",
-    "longDescription": "Mouse com sensor preciso, botões laterais e iluminação RGB. Indicado para projetos de programação, jogos educativos e uso em laboratórios de informática."
+    "icon": "https://m.media-amazon.com/images/I/71OHsj6BMZL._AC_SL1500_.jpg",
+    "shortDescription": "Pederneira de metal rigido",
+    "longDescription": "Pederneira Rák está com você em qualquer ambiente, Resistente a úmidade e poeira, nunca te deixa na mão, essencial para qualquer aventura e expedições. "
   },
   {
     "id": "1005",
-    "name": "Teclado Mecânico Compacto",
-    "price": 239.9,
-    "stock": 18,
-    "icon": "keyboard",
-    "shortDescription": "Digitação confortável para programação.",
-    "longDescription": "Teclado compacto com teclas mecânicas, resposta rápida e ótima ergonomia. Ajuda o estudante a praticar programação com mais conforto e produtividade."
-  }
+    "name": "Mochila Remigton 500",
+    "price": 1250.00,
+    "stock": 3,
+    "icon": "backpack",
+    "shortDescription": "Mochila com capacidade de 70 litros",
+    "longDescription": "Mochila Remigton foi projetada para longas expedições, a a prova d'água, rasgos e furos, feita para aguentar qualquer tipo de desafio."}
 ]

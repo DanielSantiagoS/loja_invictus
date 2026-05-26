@@ -1,4 +1,5 @@
 
+
 import 'dart:convert';
 import 'dart:math';
 
@@ -12,8 +13,6 @@ void main() {
 /// Modelo de dados do produto.
 ///
 /// Os produtos são carregados do arquivo externo assets/products.json.
-/// Isso deixa o exemplo mais organizado e aproxima o projeto de uma situação real,
-/// em que os dados poderiam vir de um banco de dados ou API.
 class Product {
   final String id;
   final String name;
@@ -47,9 +46,6 @@ class Product {
 }
 
 /// Controlador central do aplicativo.
-///
-/// Esta classe guarda os produtos, o carrinho e o número de confirmação.
-/// Ela usa ChangeNotifier para avisar as telas quando algum valor muda.
 class StoreController extends ChangeNotifier {
   final Map<String, int> _cart = <String, int>{};
 
@@ -130,12 +126,8 @@ class StoreController extends ChangeNotifier {
     return total;
   }
 
-  /// Regra didática de frete.
-  /// Frete grátis acima de R$ 300,00; abaixo disso, R$ 29,90.
   double get shipping => subtotal == 0 ? 0 : (subtotal >= 300 ? 0 : 29.90);
 
-  /// Regra didática de imposto.
-  /// Este valor é apenas uma simulação para a atividade escolar.
   double get taxes => subtotal * 0.10;
 
   double get total => subtotal + shipping + taxes;
@@ -166,12 +158,12 @@ class _LojaOnlineAppState extends State<LojaOnlineApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Loja Online Simples',
+      title: 'Invictus',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-        scaffoldBackgroundColor: const Color(0xFFF7F9FC),
+        scaffoldBackgroundColor: const Color(0xFFF2F7F2),
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
@@ -195,8 +187,9 @@ class _LojaOnlineAppState extends State<LojaOnlineApp> {
 }
 
 class AppColors {
-  static const Color primary = Color(0xFF075EDB);
-  static const Color primaryDark = Color(0xFF0A2E66);
+  static const Color primary = Color(0xFF4A7C59);
+  static const Color primaryDark = Color(0xFF1E3A28);
+  static const Color primaryLight = Color(0xFFB7D9C2);
   static const Color success = Color(0xFF2EAD55);
   static const Color warning = Color(0xFFE53935);
 }
@@ -312,7 +305,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StoreAppBar(controller: controller, title: 'Loja Online Simples'),
+      appBar: StoreAppBar(controller: controller, title: 'Invictus'),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),
@@ -320,16 +313,16 @@ class HomePage extends StatelessWidget {
             const ProductHero(),
             const SizedBox(height: 20),
             Text(
-              'Bem-vindo à Loja Online Simples!',
+              'Bem-vindo à Invictus!',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primaryDark,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: AppColors.primaryDark,
+              ),
             ),
             const SizedBox(height: 8),
             const Text(
-              'Aqui você encontra produtos de qualidade com preços justos e entrega rápida.',
+              'Equipamentos e suprimentos para sobrevivência na natureza. Esteja preparado para qualquer desafio.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
@@ -379,7 +372,7 @@ class ProductHero extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: <Color>[Color(0xFFEAF4FF), Color(0xFFFFFFFF)],
+          colors: <Color>[Color(0xFFD6EAD8), Color(0xFFF2F7F2)],
         ),
         boxShadow: const <BoxShadow>[
           BoxShadow(color: Color(0x1A000000), blurRadius: 14, offset: Offset(0, 6)),
@@ -388,9 +381,9 @@ class ProductHero extends StatelessWidget {
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          HeroIcon(icon: Icons.headphones, size: 64),
-          HeroIcon(icon: Icons.watch, size: 54),
-          HeroIcon(icon: Icons.speaker, size: 58),
+          HeroIcon(icon: Icons.hiking, size: 64),
+          HeroIcon(icon: Icons.terrain, size: 54),
+          HeroIcon(icon: Icons.local_fire_department, size: 58),
         ],
       ),
     );
@@ -429,7 +422,7 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StoreAppBar(controller: controller, title: 'Loja Online Simples', showBack: true),
+      appBar: StoreAppBar(controller: controller, title: 'Invictus', showBack: true),
       body: AnimatedBuilder(
         animation: controller,
         builder: (BuildContext context, Widget? child) {
@@ -528,7 +521,7 @@ class ProductDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StoreAppBar(controller: controller, title: 'Loja Online Simples', showBack: true),
+      appBar: StoreAppBar(controller: controller, title: 'Invictus', showBack: true),
       body: ListView(
         padding: const EdgeInsets.all(18),
         children: <Widget>[
@@ -544,9 +537,9 @@ class ProductDetailsPage extends StatelessWidget {
                     Text(
                       product.name,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryDark,
-                          ),
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryDark,
+                      ),
                     ),
                     const SizedBox(height: 6),
                     Text('ID: ${product.id}'),
@@ -629,7 +622,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StoreAppBar(controller: controller, title: 'Loja Online Simples', showBack: true),
+      appBar: StoreAppBar(controller: controller, title: 'Invictus', showBack: true),
       body: AnimatedBuilder(
         animation: controller,
         builder: (BuildContext context, Widget? child) {
@@ -660,11 +653,11 @@ class CartPage extends StatelessWidget {
                 onPressed: controller.cartProducts.isEmpty
                     ? null
                     : () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(builder: (_) => CheckoutPage(controller: controller)),
-                        );
-                      },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(builder: (_) => CheckoutPage(controller: controller)),
+                  );
+                },
               ),
               const SizedBox(height: 10),
               OutlinedButton.icon(
@@ -794,7 +787,7 @@ class QuantityControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFFB9C8E6)),
+        border: Border.all(color: AppColors.primaryLight),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -811,7 +804,7 @@ class QuantityControl extends StatelessWidget {
             width: 36,
             alignment: Alignment.center,
             decoration: const BoxDecoration(
-              border: Border.symmetric(vertical: BorderSide(color: Color(0xFFB9C8E6))),
+              border: Border.symmetric(vertical: BorderSide(color: AppColors.primaryLight)),
             ),
             child: Text('$quantity', style: const TextStyle(fontWeight: FontWeight.bold)),
           ),
@@ -895,6 +888,8 @@ class CheckoutPage extends StatefulWidget {
   State<CheckoutPage> createState() => _CheckoutPageState();
 }
 
+enum PaymentMethod { pix, creditCard, boleto }
+
 class _CheckoutPageState extends State<CheckoutPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController billingName = TextEditingController(text: 'João da Silva');
@@ -911,6 +906,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   final TextEditingController shippingZip = TextEditingController(text: '01234-567');
 
   bool useSameAddress = true;
+  PaymentMethod selectedPayment = PaymentMethod.pix;
 
   @override
   void dispose() {
@@ -953,7 +949,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StoreAppBar(controller: widget.controller, title: 'Loja Online Simples', showBack: true),
+      appBar: StoreAppBar(controller: widget.controller, title: 'Invictus', showBack: true),
       body: AnimatedBuilder(
         animation: widget.controller,
         builder: (BuildContext context, Widget? child) {
@@ -964,7 +960,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               children: <Widget>[
                 const PageHeader(
                   title: 'Finalização do Pedido',
-                  subtitle: 'Informe os endereços, revise o resumo e confirme a compra simulada.',
+                  subtitle: 'Informe os endereços, escolha o pagamento e confirme a compra.',
                 ),
                 AddressSection(
                   title: 'Endereço de cobrança',
@@ -997,6 +993,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
                 const SizedBox(height: 12),
+                // --- MÉTODO DE PAGAMENTO ---
+                PaymentSection(
+                  selectedPayment: selectedPayment,
+                  onChanged: (PaymentMethod method) {
+                    setState(() => selectedPayment = method);
+                  },
+                ),
+                const SizedBox(height: 12),
                 CheckoutOrderSummary(controller: widget.controller),
                 const SizedBox(height: 12),
                 FilledButton.icon(
@@ -1017,6 +1021,201 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+/// Widget de seleção de método de pagamento com destaque para PIX.
+class PaymentSection extends StatelessWidget {
+  final PaymentMethod selectedPayment;
+  final ValueChanged<PaymentMethod> onChanged;
+
+  const PaymentSection({
+    required this.selectedPayment,
+    required this.onChanged,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Row(
+              children: <Widget>[
+                Icon(Icons.payment, color: AppColors.primary),
+                SizedBox(width: 8),
+                Text('Método de Pagamento', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              ],
+            ),
+            const SizedBox(height: 12),
+            // PIX option
+            _PaymentOption(
+              label: 'PIX',
+              subtitle: 'Pagamento instantâneo',
+              icon: Icons.pix,
+              selected: selectedPayment == PaymentMethod.pix,
+              onTap: () => onChanged(PaymentMethod.pix),
+            ),
+            if (selectedPayment == PaymentMethod.pix)
+              const PixKeyCard(),
+            const SizedBox(height: 8),
+            // Credit Card option
+            _PaymentOption(
+              label: 'Cartão de Crédito',
+              subtitle: 'Parcelamento disponível',
+              icon: Icons.credit_card,
+              selected: selectedPayment == PaymentMethod.creditCard,
+              onTap: () => onChanged(PaymentMethod.creditCard),
+            ),
+            const SizedBox(height: 8),
+            // Boleto option
+            _PaymentOption(
+              label: 'Boleto Bancário',
+              subtitle: 'Vencimento em 3 dias úteis',
+              icon: Icons.receipt_long,
+              selected: selectedPayment == PaymentMethod.boleto,
+              onTap: () => onChanged(PaymentMethod.boleto),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PaymentOption extends StatelessWidget {
+  final String label;
+  final String subtitle;
+  final IconData icon;
+  final bool selected;
+  final VoidCallback onTap;
+
+  const _PaymentOption({
+    required this.label,
+    required this.subtitle,
+    required this.icon,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: selected ? const Color(0xFFD6EAD8) : const Color(0xFFF5F5F5),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: selected ? AppColors.primary : Colors.transparent,
+            width: 1.5,
+          ),
+        ),
+        child: Row(
+          children: <Widget>[
+            Icon(icon, color: selected ? AppColors.primary : Colors.grey.shade600, size: 26),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(label, style: TextStyle(fontWeight: FontWeight.bold, color: selected ? AppColors.primaryDark : Colors.black87)),
+                  Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                ],
+              ),
+            ),
+            if (selected)
+              const Icon(Icons.check_circle, color: AppColors.primary),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Card exibindo a chave PIX.
+class PixKeyCard extends StatelessWidget {
+  const PixKeyCard({super.key});
+
+  static const String pixKey = '11111';
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 8, bottom: 4),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEAF7EF),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.success),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Row(
+            children: <Widget>[
+              Icon(Icons.pix, color: AppColors.success, size: 20),
+              SizedBox(width: 6),
+              Text('Dados para pagamento PIX', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.primaryDark)),
+            ],
+          ),
+          const SizedBox(height: 8),
+          const Text('Chave PIX (Chave Aleatória):', style: TextStyle(fontSize: 13, color: Colors.black54)),
+          const SizedBox(height: 4),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: AppColors.primaryLight),
+                ),
+                child: const Text(
+                  pixKey,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    letterSpacing: 4,
+                    color: AppColors.primaryDark,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: AppColors.primary),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                ),
+                icon: const Icon(Icons.copy, size: 16),
+                label: const Text('Copiar'),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: AppColors.success,
+                      content: Text('Chave PIX copiada: $pixKey'),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          const Text(
+            'Após o pagamento, o pedido será confirmado automaticamente.',
+            style: TextStyle(fontSize: 12, color: Colors.black54),
+          ),
+        ],
       ),
     );
   }
@@ -1171,9 +1370,9 @@ class PageHeader extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: AppColors.primaryDark,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: AppColors.primaryDark,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 4),
           Text(subtitle),
@@ -1194,9 +1393,9 @@ class DidacticNote extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFEAF4FF),
+        color: const Color(0xFFD6EAD8),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFB7D4FF)),
+        border: Border.all(color: AppColors.primaryLight),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1231,7 +1430,7 @@ class ProductIcon extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: const Color(0xFFEAF4FF),
+        color: const Color(0xFFD6EAD8),
         borderRadius: BorderRadius.circular(size * 0.22),
       ),
       child: Icon(productIcon(product.icon), size: size * 0.55, color: AppColors.primaryDark),
@@ -1241,18 +1440,24 @@ class ProductIcon extends StatelessWidget {
 
 IconData productIcon(String icon) {
   switch (icon) {
-    case 'headphones':
-      return Icons.headphones;
-    case 'watch':
-      return Icons.watch;
-    case 'speaker':
-      return Icons.speaker;
-    case 'mouse':
-      return Icons.mouse;
-    case 'keyboard':
-      return Icons.keyboard;
+    case 'knife':
+      return Icons.construction;
+    case 'tent':
+      return Icons.holiday_village;
+    case 'water':
+      return Icons.water_drop;
+    case 'radio':
+      return Icons.radio;
+    case 'rope':
+      return Icons.link;
+    case 'medical':
+      return Icons.medical_services;
+    case 'fire':
+      return Icons.local_fire_department;
+    case 'compass':
+      return Icons.explore;
     default:
-      return Icons.devices_other;
+      return Icons.inventory_2;
   }
 }
 
